@@ -59,4 +59,122 @@
 # =============================================================================
 # YOUR CODE BELOW — remove the # symbols from the scaffold and fill it in
 # =============================================================================
+#ask for the number of rows and columns
 
+matrix = []
+# how many matrixes are going to be used for the addition and multiplication of the matrix
+matrix_count = int(input("How many matrices do you want to work with? :"))
+
+
+
+
+
+
+rows = int(input("Enter number of rows: "))
+cols = int(input("Enter number of columns: "))
+# take the number of rows and column and create the matrix column before the inputs with detailed infoof the part it is going to 
+print(f"Enter the values for a {rows} x {cols} matrix:")
+
+# take the input from the user and create the matrix, it should go through the number of rows and columns and take the input from the user and create the matrix
+#it should show the row and where it is being appended to or where in the row or the column that it is being used 
+def create_matrix(rows, cols):
+
+    matrix = []
+    print(f"\n--- Creating a {rows}x{cols} Matrix ---")
+    for r in range(rows):
+        while True:
+            try:
+                # Read the entire row as space-separated integers on one single line
+                row_input = list(map(int, input(f"Enter row {r + 1}: ").split()))
+                
+                # Check if the user entered exactly the requested number of columns
+                if len(row_input) != cols:
+                    print(f"Error: You must enter exactly {cols} values.")
+                    continue  # Restart the while loop for this row
+                
+                # If valid, break out of the while loop to save it
+                matrix.append(row_input)
+                print(f"Row {r + 1} complete: {row_input}\n")
+                break
+                
+            except ValueError:
+                print("Error: Invalid input. Please enter only integers separated by spaces.")
+                
+    return matrix
+# --- NEW STEP: Collect all matrices in a list ---
+
+matrices_list = []
+for idx in range(matrix_count):
+    print(f"\n--- Creating Matrix {idx + 1} of {matrix_count} ---")
+    new_matrix = create_matrix(rows, cols)
+    matrices_list.append(new_matrix)
+
+# Print all collected matrices to show the user
+for idx, mat in enumerate(matrices_list):
+    print(f"\nMatrix {idx + 1}:")
+    for row in mat:
+        print(" ".join(f"{val:<4}" for val in row))
+
+
+# Part A — Transpose a Matrix
+#compute for the transpose of the matrix
+
+def transpose_matrix(a):
+    transposed = []
+    for j in range(len(a[0])):
+        new_row = []
+        for i in range(len(a)):
+            new_row.append(a[i][j])
+        transposed.append(new_row)
+    return transposed
+
+# Display the transposed matrix
+print("Transposed Matrix:")
+for row in transpose_matrix(matrices_list[0]):
+    print(" ".join(f"{val:<4}" for val in row))
+
+
+# Part B — Add Two Matrices
+def add_matrices(a, b):
+    if len(a) != len(b) or len(a[0]) != len(b[0]):
+        print("Error: Matrices must be of the same size to add.")
+        return None
+
+    result = []
+    for i in range(len(a)):
+        new_row = []
+
+        for j in range(len(a[0])):
+            new_row.append(a[i][j] + b[i][j])
+        result.append(new_row)
+
+    return result
+
+# Display the sum of the two matrices
+print("Sum of Matrices:")
+for row in add_matrices(matrices_list[0], matrices_list[1]):
+    print(" ".join(f"{val:<4}" for val in row))
+
+
+# part C — Multiply Two Matrices
+def multiply_matrices(a, b):
+    # if len(a[0]) != len(b):
+    #     print("Error: Number of columns in A must equal number of rows in B for multiplication.")
+    #     return None
+
+    result = []
+    for i in range(len(a)):
+        new_row = []
+        for j in range(len(b[0])):
+            sum_product = 0
+            for k in range(len(b)):
+                sum_product += a[i][k] * b[k][j]
+            new_row.append(sum_product)
+        result.append(new_row)
+
+    return result
+
+# Display the product of the two matrices
+print("Product of Matrices:")
+for row in multiply_matrices(matrices_list[0], matrices_list[1]):
+    print(" ".join(f"{val:<4}" for val in row))
