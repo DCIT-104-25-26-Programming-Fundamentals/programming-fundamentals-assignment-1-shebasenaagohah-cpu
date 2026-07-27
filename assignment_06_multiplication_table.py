@@ -55,3 +55,25 @@
 # YOUR CODE BELOW — remove the # symbols from the scaffold and fill it in
 # =============================================================================
 
+# ask the user to enter a number for Part A
+num = int(input("Enter a number for the multiplication table: "))
+n=int(input("Enter a number for the multiplication tables up to N: "))
+
+if num <= 0:
+    print("Please enter a positive integer.")
+else:
+    # PART A — Single Table
+    def print_multiplication_table(a):
+        print(f"Multiplication Table for {a}:")
+        for i in range(1, 13):
+            print(f"{a}  x  {i}  =  {a * i}")
+
+    # Execute the function for Part A
+    print_multiplication_table(num)
+
+    def print_multiplication_tables_up_to_n(a):
+        print(f"Multiplication Table for {a}:")
+        for i in range(1, n+1):
+            print(f"{a}  x  {i}  =  {a * i}")
+            print("-" * 30)
+    print_multiplication_tables_up_to_n(num)
