@@ -15,6 +15,7 @@
 #   Score 50 – 59   →  Grade D
 #   Score below 50  →  Grade F
 #
+score=int(input("Enter student score "))
 # -----------------------------------------------------------------------------
 # EXPECTED INPUT / OUTPUT EXAMPLES
 # -----------------------------------------------------------------------------
@@ -39,9 +40,24 @@
 #   If it is not, return None and let main() print the error message.
 # - Use if / elif / else to determine the grade.
 #
+def get_grade(n):
+    if n < 0 or n > 100:
+        return None
+    elif n >= 80:
+        return "A"
+    elif n >= 70:
+        return "B"
+    elif n >= 60:
+        return "C"
+    elif n >= 50:
+        return "D"
+    else:
+        return "F"
 
 #
 # =============================================================================
 # YOUR CODE BELOW — remove the # symbols from the scaffold and fill it in
 # =============================================================================
+
+print(f"Grade: {get_grade(score)}")
 
